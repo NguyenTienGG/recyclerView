@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class RvAdapter(val list: List<OurData>) : RecyclerView.Adapter<RvAdapter.filmViewHolder>() {
+class RvAdapter(val list: List<OurData>, val onFilmClick:RVInterface) : RecyclerView.Adapter<RvAdapter.filmViewHolder>() {
     // class viewHolder
     inner class filmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -29,6 +29,12 @@ class RvAdapter(val list: List<OurData>) : RecyclerView.Adapter<RvAdapter.filmVi
             RvTitle.text = list[position].titleOD
             RvDesc.text = list[position].descOD
             RvImg.setImageResource(list[position].imgOD)
+
+
+            holder.itemView.setOnClickListener{
+                onFilmClick.onClickFilm(position)
+            }
+
 
         }
     }

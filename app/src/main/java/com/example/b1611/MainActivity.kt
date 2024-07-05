@@ -1,6 +1,7 @@
 package com.example.b1611
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -28,11 +29,18 @@ class MainActivity : AppCompatActivity() {
         list.add(OurData(R.drawable.rong, "rong", "rong thieng"))
         list.add(OurData(R.drawable.thanlan, "than lan", "than lan hoan hon"))
 
-        val adapter = RvAdapter(list)
+        val adapter = RvAdapter(list,object :RVInterface{
+            override fun onClickFilm(pos: Int) {
+                Toast.makeText(this@MainActivity, "Click on item ${list[pos].titleOD}", Toast.LENGTH_SHORT).show()
+            }
+
+        })
         binding.RVDemo.adapter = adapter
         binding.RVDemo.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
 
+
 //        binding.RVDemo.layoutManager =GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
     }
+
 }
